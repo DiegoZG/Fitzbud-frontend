@@ -1,26 +1,44 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Login from './LoginSignUp/Login'
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Signup from './LoginSignUp/SignUp'
+import Header from './Header/Header';
+import { Parallax } from 'react-parallax';
 
-function App() {
+
+const image1 = "https://i1.wp.com/www.quytech.com/blog/wp-content/uploads/2018/09/diet-plan-apps.jpg"
+
+const inLineStyle = {
+  // background: '#fff',
+  left: '50%',
+  top: '50%',
+  position: 'absolute',
+  padding: '20px',
+  transform: 'translate(-50%, -50%)'
+}
+
+class App extends React.Component {
+  
+  render() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+   <BrowserRouter>
+  
+    <div>
+      <Header />
+      <Parallax bgImage={ image1 } strength={600}> 
+      <div style={{ height: 700}}>
+        <div style={inLineStyle}> HTML </div>
+      </div>
+      </Parallax>
+      <div style={{ height: '100vh' }}></div>
+      <Route path='/login' component={Login} />
+      <Route path='/signup' component={Signup} />
     </div>
+    
+    </BrowserRouter>
   );
+}
 }
 
 export default App;
