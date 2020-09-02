@@ -1,9 +1,10 @@
 import React from 'react';
-
+import NavImage from '../Header/NavImage'
 const Main = () => {
   return (
     <div>
-      <h1> Welcome to Calorie Counter Home Page</h1>
+      <NavImage />
+      
     </div>
   );
 };

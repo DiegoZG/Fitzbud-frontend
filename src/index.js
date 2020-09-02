@@ -9,7 +9,7 @@ import reducers from './reducers'
 import { BrowserRouter } from 'react-router-dom';
 
  const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
- export const store = createStoreWithMiddleware(reducers)
+ export const store = createStoreWithMiddleware(reducers);
 
 ReactDOM.render(
   <Provider store={store}>

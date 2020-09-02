@@ -53,10 +53,14 @@ export default function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const history = useHistory();
+  const handleClick = () => {
+    if(localStorage.token) history.push("/")
+}
+
   let handleSubmit = (e) => {
           e.preventDefault()
     
-          fetch("http://localhost:3000/users", {
+          fetch("http://localhost:3000/login", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
@@ -67,11 +71,19 @@ export default function SignIn() {
             })
           })
           .then(res => res.json())
-          .then(data => {
-            localStorage.setItem("token", data.token)
-            console.log(localStorage.token)
+          .then(data => { if(data.toke){
+            localStorage.token = data.token
+            localStorage.email = data.user.email
+            console.log(localStorage.token)}
+            else {
+          // let wrong = document.createElement("h1");
+          // wrong.innerText = data.error
+          // wrong.style.color = "red"
+          // document.querySelector('.makeStyles-paper-1').append(wrong)
+            }
             
           })
+         handleClick()
         }
   
 
@@ -83,7 +95,7 @@ export default function SignIn() {
           <FitnessCenterIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Log In
         </Typography>
         <form className={classes.form} noValidate onSubmit={(e) => handleSubmit(e)}>
           <TextField
@@ -143,7 +155,8 @@ export default function SignIn() {
     </Container>
   );
 }
-// class SignUp extends Component{
+
+// class Login extends Component{
 
 //     handleChange = (e) => {
 //       this.setState({
@@ -151,10 +164,10 @@ export default function SignIn() {
 //       })
 //     }
 
-//     signUp = (e) => {
+//     handleSubmit = (e) => {
 //       e.preventDefault()
 
-//       fetch("http://localhost:3000/users", {
+//       fetch("http://localhost:3000/login", {
 //         method: "POST",
 //         headers: {
 //           "Content-Type": "application/json"
@@ -166,19 +179,19 @@ export default function SignIn() {
 //       })
 //       .then(res => res.json())
 //       .then(data => {
-//           console.log(data)
-//         // localStorage.setItem("token", data.token)
 //         localStorage.token = data.token
+        
+        
 //       })
 //     }
-   
+
 //     render(){
 //         return(
 //         <div>
-//             <h2>Signup</h2>
-//             <form onSubmit={(e) => this.signUp(e)}>
+//              <h2>Login</h2>
+//             <form onSubmit={(e) => this.handleSubmit(e)}>
 //             <label>Email</label>
-//             <input onChange={(e) => this.handleChange(e)} name="email" type="text" />
+//             <input onChange={(e) => this.handleChange(e)} name="email" type="text"  />
 //             <label>Password</label>
 //             <input onChange={(e) => this.handleChange(e)} name="password" type="password" />
 //             <input type="submit"/>
@@ -188,4 +201,4 @@ export default function SignIn() {
 //     }
 // }
 
-// export default SignUp
+// export default Login

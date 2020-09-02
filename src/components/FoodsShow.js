@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import EditForm from './edit_form';
+import EditForm from './EditForm';
 import { fetchFood, deleteFood, enableEditMode } from '../actions/index';
 
 class FoodsShow extends Component {
